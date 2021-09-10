@@ -26,4 +26,5 @@ def new_game():
     game = BoggleGame()
     games[game_id] = game
 
-    return {"gameId": "need-real-id", "board": "need-real-board"} #currently returning a dictionary; Flask turns into JSON
+
+    return {"gameId": game_id, "board": game.board} #currently returning a dictionary; Flask turns into JSON
