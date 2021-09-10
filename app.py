@@ -28,3 +28,23 @@ def new_game():
 
 
     return {"gameId": game_id, "board": game.board} #currently returning a dictionary; Flask turns into JSON
+
+@app.post("/api/score-word")
+def score_word():
+    """Scores word, returns validity of the word in the response body """
+
+    id = request.json["gameId"]
+    word = request.json["word"]
+    # breakpoint()
+    game = games[id]
+    in_word_list = game.is_word_in_word_list(word)
+    on_board = game.check_word_on_board(word)
+
+    # breakpoint()
+
+    if (not in_word_list):
+        return {"result": "not-word"}
+    elif (not on_board):
+        return {"result": "not-on-board"}
+    else:
+        return {"result": "ok"}

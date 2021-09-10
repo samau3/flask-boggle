@@ -39,5 +39,26 @@ class BoggleAppTestCase(TestCase):
             self.assertEqual(response.status_code, 200)
 
             self.assertIn(game_data["gameId"], games)
+            self.assertIs(type(game_data["gameId"]), str)
+            self.assertIs(type(game_data["board"]), list)
+            self.assertIs(len(game_data["board"]), 5)
             
-            #self.assertTrue(games[response["gameId"]])
+    def test_score_word(self):
+        """Test scoring word"""
+
+        with self.client as client: # will need to create a fixed board so it can actually be tested
+            ...
+            new_game = client.post("/api/new-game")
+
+            breakpoint() #can't put breakpoint as last line of code in function
+
+            # new_data = new_game
+            # print(new_game)
+            game_id = new_game.get_json()["gameId"]
+
+            breakpoint()
+            # response = client.post("/api/score-word", json={"gameId": games[], "word": "DOG"})
+            return False
+            # breakpoint()
+            # response = client.post("/api/score-word", data={"gameId": games["id"], "word": "DOG"})
+            # game_data = response.get_json()
